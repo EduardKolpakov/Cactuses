@@ -12,19 +12,21 @@ namespace Cactuses.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Exhibition
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Exhibition()
         {
-            this.Logins = new HashSet<Logins>();
+            this.Cactuses_Exhibitions = new HashSet<Cactuses_Exhibitions>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Access { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string Address { get; set; }
+        public string Awards { get; set; }
+        public string Commentaries { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logins> Logins { get; set; }
+        public virtual ICollection<Cactuses_Exhibitions> Cactuses_Exhibitions { get; set; }
     }
 }

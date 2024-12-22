@@ -18,7 +18,7 @@ namespace Cactuses.DB
         public int CactusID { get; set; }
         public int ExhibitionID { get; set; }
     
-        public virtual Cactuses Cactuses { get; set; }
-        public virtual Exhibitions Exhibitions { get; set; }
+        public virtual Cactus Cactus { get; set; }
+        public virtual Exhibition Exhibition { get; set; }
     }
 }

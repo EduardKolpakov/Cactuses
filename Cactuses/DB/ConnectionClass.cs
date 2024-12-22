@@ -9,6 +9,6 @@ namespace Cactuses.DB
     class ConnectionClass
     {
         public static MDK_RPM_CactusEntities db = new MDK_RPM_CactusEntities();
-        public static Users user = new Users();
+        public static User user = new User();
     }
 }

@@ -33,15 +33,16 @@ namespace Cactuses.Pages
             string login = txtLogin.Text;
             string password = txtPassword.Password;
 
-            var user = ConnectionClass.db.Logins.FirstOrDefault(log => log.Login == login && log.Password == password);
+            var user = ConnectionClass.db.Logins.FirstOrDefault(log => log.Login1 == login && log.Password == password);
             if (user == null)
             {
                 MessageBox.Show("Пользователь не найден!");
                 return;
             }
+            string rights = ConnectionClass.db.Users.FirstOrDefault(us => us.ID == user.UserID).Access;
 
             MessageBox.Show("Пользователь найден!");
-
+            _mainWindow.MainFrame.NavigationService.Navigate(new CactusPage(rights));
         }
     }
 }

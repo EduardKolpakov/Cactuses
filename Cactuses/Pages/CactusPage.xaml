@@ -1,0 +1,37 @@
+﻿<Page x:Class="Cactuses.Pages.CactusPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cactuses.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1250"
+      Title="CactusPage" Background="AliceBlue">
+
+    <Grid>
+        <ListView Grid.Row="1" Name="ListCactuses" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="0, 57, 0, 0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Width="70">id</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Sort}" Width="250">Вид</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Age}" Width="100">Возраст</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Origin}" Width="250">Происхождение</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Cost}" Width="100">Стоимость</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Instruction}" Width="300">Инструкции</GridViewColumn>
+                    <GridViewColumn Header="Действие" Width="180">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button x:Name="BtnDelete" Content="Удалить" Margin="0 0 5 0" Background="red" Click="BtnDelete_Click"/>
+                                    <Button x:Name="BtnEdit" Content="Редактровать" Margin="0 0 5 0" Background="Green" Click="BtnEdit_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="BtnAdd" Content="Добавить" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="BtnAdd_Click"/>
+        <Button x:Name="BtnExh" Content="Выставки" HorizontalAlignment="Left" Margin="766,10,0,0" VerticalAlignment="Top" Height="30" Width="151" Click="BtnExh_Click"/>
+    </Grid>
+</Page>

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29911.84
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cactuses", "Cactuses\Cactuses.csproj", "{11E1AA66-1F1E-4A67-B82E-2BC2D236F280}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CactusWPF", "Cactuses\CactusWPF.csproj", "{11E1AA66-1F1E-4A67-B82E-2BC2D236F280}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,10 +25,10 @@ namespace Cactuses.DB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cactuses> Cactuses { get; set; }
+        public virtual DbSet<Cactus> Cactuses { get; set; }
         public virtual DbSet<Cactuses_Exhibitions> Cactuses_Exhibitions { get; set; }
-        public virtual DbSet<Exhibitions> Exhibitions { get; set; }
-        public virtual DbSet<Logins> Logins { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Exhibition> Exhibitions { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

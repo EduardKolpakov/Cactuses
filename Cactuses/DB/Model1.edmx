@@ -52,7 +52,9 @@
           <Property Name="Access" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cactuses-Exhibitions_Cactuses">
-          <End Role="Cactuses" Type="Self.Cactuses" Multiplicity="1" />
+          <End Role="Cactuses" Type="Self.Cactuses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cactuses-Exhibitions" Type="Self.Cactuses-Exhibitions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cactuses">
@@ -64,7 +66,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cactuses-Exhibitions_Exhibitions">
-          <End Role="Exhibitions" Type="Self.Exhibitions" Multiplicity="1" />
+          <End Role="Exhibitions" Type="Self.Exhibitions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cactuses-Exhibitions" Type="Self.Cactuses-Exhibitions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exhibitions">
@@ -111,7 +115,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MDK_RPM_CactusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cactuses">
+        <EntityType Name="Cactus">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -130,10 +134,10 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CactusID" Type="Int32" Nullable="false" />
           <Property Name="ExhibitionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cactuses" Relationship="Self.FK_Cactuses_Exhibitions_Cactuses" FromRole="Cactuses_Exhibitions" ToRole="Cactuses" />
-          <NavigationProperty Name="Exhibitions" Relationship="Self.FK_Cactuses_Exhibitions_Exhibitions" FromRole="Cactuses_Exhibitions" ToRole="Exhibitions" />
+          <NavigationProperty Name="Cactus" Relationship="Self.FK_Cactuses_Exhibitions_Cactuses" FromRole="Cactuses_Exhibitions" ToRole="Cactuses" />
+          <NavigationProperty Name="Exhibition" Relationship="Self.FK_Cactuses_Exhibitions_Exhibitions" FromRole="Cactuses_Exhibitions" ToRole="Exhibitions" />
         </EntityType>
-        <EntityType Name="Exhibitions">
+        <EntityType Name="Exhibition">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -144,17 +148,17 @@
           <Property Name="Commentaries" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cactuses_Exhibitions" Relationship="Self.FK_Cactuses_Exhibitions_Exhibitions" FromRole="Exhibitions" ToRole="Cactuses_Exhibitions" />
         </EntityType>
-        <EntityType Name="Logins">
+        <EntityType Name="Login">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Logins_Users" FromRole="Logins" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Logins_Users" FromRole="Logins" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -164,7 +168,9 @@
           <NavigationProperty Name="Logins" Relationship="Self.FK_Logins_Users" FromRole="Users" ToRole="Logins" />
         </EntityType>
         <Association Name="FK_Cactuses_Exhibitions_Cactuses">
-          <End Role="Cactuses" Type="Self.Cactuses" Multiplicity="1" />
+          <End Role="Cactuses" Type="Self.Cactus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cactuses_Exhibitions" Type="Self.Cactuses_Exhibitions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cactuses">
@@ -176,7 +182,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cactuses_Exhibitions_Exhibitions">
-          <End Role="Exhibitions" Type="Self.Exhibitions" Multiplicity="1" />
+          <End Role="Exhibitions" Type="Self.Exhibition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cactuses_Exhibitions" Type="Self.Cactuses_Exhibitions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exhibitions">
@@ -188,8 +196,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logins_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Logins" Type="Self.Login" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="ID" />
@@ -200,11 +208,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MDK_RPM_CactusEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cactuses" EntityType="Self.Cactuses" />
+          <EntitySet Name="Cactuses" EntityType="Self.Cactus" />
           <EntitySet Name="Cactuses_Exhibitions" EntityType="Self.Cactuses_Exhibitions" />
-          <EntitySet Name="Exhibitions" EntityType="Self.Exhibitions" />
-          <EntitySet Name="Logins" EntityType="Self.Logins" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Exhibitions" EntityType="Self.Exhibition" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Cactuses_Exhibitions_Cactuses" Association="Self.FK_Cactuses_Exhibitions_Cactuses">
             <End Role="Cactuses" EntitySet="Cactuses" />
             <End Role="Cactuses_Exhibitions" EntitySet="Cactuses_Exhibitions" />
@@ -225,7 +233,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище MDK_RPM_CactusModelContainer" CdmEntityContainer="MDK_RPM_CactusEntities">
           <EntitySetMapping Name="Cactuses">
-            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Cactuses">
+            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Cactus">
               <MappingFragment StoreEntitySet="Cactuses">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
@@ -246,7 +254,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Exhibitions">
-            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Exhibitions">
+            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Exhibition">
               <MappingFragment StoreEntitySet="Exhibitions">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -257,17 +265,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Logins">
-            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Logins">
+            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Login">
               <MappingFragment StoreEntitySet="Logins">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Login1" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.Users">
+            <EntityTypeMapping TypeName="MDK_RPM_CactusModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -289,7 +297,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

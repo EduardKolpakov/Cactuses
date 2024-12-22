@@ -12,10 +12,10 @@ namespace Cactuses.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Cactuses
+    public partial class Cactus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cactuses()
+        public Cactus()
         {
             this.Cactuses_Exhibitions = new HashSet<Cactuses_Exhibitions>();
         }
